@@ -1,4 +1,3 @@
-cat > src/index.ts << 'EOF'
 import { Hono } from 'hono';
 
 const app = new Hono();
@@ -287,4 +286,4 @@ app.get('/api/script', async (c) => {
 });
 
 export default app;
-EOF
+

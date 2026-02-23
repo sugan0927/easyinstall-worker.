@@ -1,0 +1,28 @@
+{
+  "name": "easyinstall-worker",
+  "version": "1.0.0",
+  "description": "EasyInstall Cloudflare Worker",
+  "main": "src/index.ts",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "build": "wrangler build",
+    "start": "wrangler dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cloudflare",
+    "worker",
+    "easyinstall"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "hono": "^4.0.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240208.0",
+    "wrangler": "^4.0.0",
+    "typescript": "^5.3.3"
+  }
+}

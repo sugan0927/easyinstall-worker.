@@ -1,4 +1,4 @@
-cat > src/script.ts << 'EOF'
+
 // Bash script content as a raw string
 export const EASYINSTALL_SCRIPT = `#!/bin/bash
 # EasyInstall v3 - Main Installation Script
@@ -107,4 +107,4 @@ main() {
 # Run main function with all arguments
 main "$@"
 `;
-EOF
+

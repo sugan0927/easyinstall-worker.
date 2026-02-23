@@ -1,4 +1,4 @@
-cat > src/index.ts << 'EOF'
+
 // src/index.ts - COMPLETELY FIXED VERSION
 // Using the correct import syntax for Deno
 
@@ -514,4 +514,4 @@ async function executeDeployment(
 serve(app.fetch, { port: 8000 });
 
 console.log('🚀 EasyInstall server running on http://localhost:8000');
-EOF
+

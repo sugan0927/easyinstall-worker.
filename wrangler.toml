@@ -1,0 +1,14 @@
+name = "easyinstall-worker"
+main = "src/index.ts"
+compatibility_date = "2025-01-01"
+
+# Environment variables
+[vars]
+MAX_DEPLOYMENTS = "10"
+DEPLOYMENT_TIMEOUT = "300"
+GITHUB_RAW_URL = "https://raw.githubusercontent.com/yourusername/easyinstall/main/easyinstall.sh"
+
+# Uncomment if you want to use KV for storage
+# [[kv_namespaces]]
+# binding = "DEPLOYMENTS"
+# id = "your-kv-namespace-id"

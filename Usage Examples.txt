@@ -1,0 +1,23 @@
+# Build and install package
+./install.sh
+
+# Check package status
+easyinstall --pkg-status
+
+# Verify installation
+easyinstall --pkg-verify
+
+# Backup configuration
+easyinstall --pkg-backup
+
+# Install WordPress with theme editor enabled
+easyinstall domain example.com
+
+# Create additional site with editor enabled
+easyinstall site create another-site.com
+
+# List all sites
+easyinstall site list
+
+# Remove package completely
+dpkg -r easyinstall

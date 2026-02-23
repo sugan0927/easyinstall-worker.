@@ -1,0 +1,14 @@
+easyinstall/
+├── easyinstall.sh              # Your original script (modified with package hooks)
+├── pkg-manager.sh              # Main package manager
+├── build-pkg.sh                 # Package builder
+├── debian/
+│   ├── control                  # Debian control file
+│   ├── postinst                  # Post-installation script
+│   ├── prerm                      # Pre-removal script
+│   └── easyinstall.service        # Systemd service
+├── hooks/
+│   ├── enable-theme-editor.sh    # Theme editor enabler
+│   └── post-install.sh            # Post-installation hooks
+└── config/
+    └── easyinstall.conf           # Default configuration

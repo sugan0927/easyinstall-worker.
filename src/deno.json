@@ -1,4 +1,4 @@
-cat > deno.json << 'EOF'
+
 {
   "name": "easyinstall-deno",
   "version": "1.0.0",
@@ -15,4 +15,3 @@ cat > deno.json << 'EOF'
     "ssh2": "npm:ssh2@^0.8.9"
   }
 }
-EOF

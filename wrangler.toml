@@ -3,5 +3,5 @@ main = "src/index.ts"
 compatibility_date = "2024-01-01"
 
 [vars]
-GITHUB_SCRIPT_URL = "https://raw.githubusercontent.com/sugan09/easyinstall-worker/main/easyinstall.sh"
+GITHUB_SCRIPT_URL = "https://raw.githubusercontent.com/sugan0927/easyinstall-worker/main/easyinstall.sh"
 

@@ -1,0 +1,8 @@
+{
+  "imports": {
+    "hono": "https://deno.land/x/hono@v3.11.11/mod.ts",
+    "hono/": "https://deno.land/x/hono@v3.11.11/",
+    "ssh2": "npm:ssh2@^0.8.9",
+    "std/": "https://deno.land/std@0.208.0/"
+  }
+}

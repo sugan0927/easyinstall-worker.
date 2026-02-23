@@ -1,11 +1,11 @@
 cat > src/index.ts << 'EOF'
-// src/index.ts - CORRECT VERSION
-// IMPORTANT: Use default import, NOT destructured
+// src/index.ts - COMPLETELY FIXED VERSION
+// Using the correct import syntax for Deno
 
 import { Hono } from 'hono';
 import { serve } from 'std/http/server.ts';
-// ✅ CORRECT - Default import
-import ssh2 from 'ssh2';
+// Import ssh2 correctly for Deno
+import * as ssh2 from 'ssh2';
 
 // Type definitions
 interface Deployment {
@@ -428,7 +428,7 @@ async function executeDeployment(
     
     log('🔌 Establishing SSH connection...');
     
-    // ✅ CORRECT: Use default import
+    // ✅ CORRECT: Use the imported ssh2 namespace
     const Client = ssh2.Client;
     const client = new Client();
     
@@ -436,7 +436,20 @@ async function executeDeployment(
       client.on('ready', () => {
         log('✅ SSH connection established');
         
-        const command = `curl -sSL https://raw.githubusercontent.com/yourusername/easyinstall/main/easyinstall.sh | bash && easyinstall domain ${domain} ${template === 'ssl' ? '--ssl' : ''}`;
+        // Build command based on template
+        const easyinstallUrl = 'https://raw.githubusercontent.com/yourusername/easyinstall/main/easyinstall.sh';
+        let command = '';
+        
+        switch (template) {
+          case 'ssl':
+            command = `curl -sSL ${easyinstallUrl} | bash && easyinstall domain ${domain} --ssl`;
+            break;
+          case 'multisite':
+            command = `curl -sSL ${easyinstallUrl} | bash && easyinstall panel`;
+            break;
+          default:
+            command = `curl -sSL ${easyinstallUrl} | bash && easyinstall domain ${domain}`;
+        }
         
         log(`📦 Executing: ${command}`);
         

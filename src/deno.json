@@ -1,0 +1,8 @@
+{
+  "name": "easyinstall-deno",
+  "version": "1.0.0",
+  "tasks": {
+    "dev": "deno run -A --watch --import-map=../import_map.json src/index.ts",
+    "deploy": "deployctl deploy --project=easyinstall-deno --import-map=import_map.json src/index.ts"
+  }
+}

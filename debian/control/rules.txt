@@ -1,0 +1,12 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@
+
+override_dh_auto_install:
+	# Nothing to build, just install files
+	dh_auto_install
+
+override_dh_install:
+	# Install using the build-pkg.sh script
+	./build-pkg.sh

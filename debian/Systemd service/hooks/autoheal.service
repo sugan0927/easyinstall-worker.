@@ -1,0 +1,32 @@
+[Unit]
+Description=EasyInstall Auto-Healing Service
+Description=Automatically monitors and restarts failed services
+Documentation=https://github.com/sugandodrai/easyinstall
+After=network.target nginx.service mariadb.service redis-server.service php8.3-fpm.service
+Wants=network.target
+Requires=nginx.service mariadb.service redis-server.service
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/autoheal
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=always
+RestartSec=10
+User=root
+Group=root
+Environment=EASYINSTALL_PKG_MODE=true
+Environment=CONFIG_FILE=/etc/easyinstall/easyinstall.conf
+Environment=LOG_FILE=/var/log/autoheal.log
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=easyinstall-autoheal
+
+# Security hardening
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=full
+ProtectHome=yes
+ReadWritePaths=/var/log /tmp /var/run /var/cache/nginx
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,28 @@
+[Unit]
+Description=Glances - An eye on your system
+Description=Advanced real-time system monitoring
+Documentation=https://github.com/nicolargo/glances
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/glances -w -t 5 --username --password
+ExecStop=/bin/kill -TERM $MAINPID
+Restart=on-failure
+RestartSec=30
+User=root
+Group=root
+Environment=GLANCES_CONF=/etc/glances/glances.conf
+Environment=GLANCES_EXPORT=1
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=glances
+
+# Security
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=full
+ReadWritePaths=/var/log/glances
+
+[Install]
+WantedBy=multi-user.target

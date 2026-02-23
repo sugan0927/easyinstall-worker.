@@ -1,8 +1,10 @@
-// src/index.ts - Complete working version for Deno
+// src/index.ts - COMPLETELY FIXED VERSION
+// DO NOT use destructured import - use namespace import
 
 import { Hono } from 'hono';
 import { serve } from 'std/http/server.ts';
-import * as ssh2 from 'ssh2';
+// IMPORTANT: Use namespace import, NOT destructured
+import ssh2 from 'ssh2';
 
 // Type definitions
 interface Deployment {
@@ -19,7 +21,7 @@ interface Deployment {
   logs: string[];
 }
 
-// In-memory storage (use Deno KV for persistence)
+// In-memory storage (will use Deno KV in production)
 const deployments = new Map<string, Deployment>();
 
 // Create Hono app
@@ -409,7 +411,7 @@ app.get('/api/deployments', (c) => {
 });
 
 // ============================================
-// Execute SSH Deployment
+// Execute SSH Deployment - FIXED
 // ============================================
 async function executeDeployment(
   deploymentId: string,
@@ -435,7 +437,7 @@ async function executeDeployment(
     
     log('🔌 Establishing SSH connection...');
     
-    // Create SSH client - Fix: use proper import
+    // FIX: Use default import and access Client property
     const Client = ssh2.Client;
     const client = new Client();
     
@@ -460,7 +462,7 @@ async function executeDeployment(
         
         log(`📦 Executing: ${command}`);
         
-        client.exec(command, (err: Error | undefined, stream: any) => {
+        client.exec(command, (err: Error | null, stream: any) => {
           if (err) {
             reject(err);
             return;
@@ -505,12 +507,13 @@ async function executeDeployment(
     });
     
   } catch (error) {
-    log(`❌ Deployment failed: ${error.message}`);
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    log(`❌ Deployment failed: ${errorMessage}`);
     
     const deployment = deployments.get(deploymentId);
     if (deployment) {
       deployment.status = 'failed';
-      deployment.error = error.message;
+      deployment.error = errorMessage;
       deployment.endTime = new Date().toISOString();
     }
   }

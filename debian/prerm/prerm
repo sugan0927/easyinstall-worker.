@@ -1,0 +1,39 @@
+#!/bin/bash
+# Minimal prerm script for easyinstall
+
+set -e
+
+case "$1" in
+    remove|upgrade|deconfigure)
+        echo "Preparing EasyInstall for removal..."
+        
+        # Stop autoheal service if running
+        if systemctl is-active --quiet autoheal 2>/dev/null; then
+            systemctl stop autoheal
+            systemctl disable autoheal
+        fi
+        
+        # Remove symlinks
+        rm -f /usr/local/bin/easyinstall
+        rm -f /usr/local/bin/easy-pkg
+        
+        # Backup configuration
+        if [ -d /etc/easyinstall ]; then
+            tar -czf /var/backups/easyinstall-pre-remove.tar.gz /etc/easyinstall 2>/dev/null || true
+        fi
+        
+        echo "✅ EasyInstall prepared for removal"
+        ;;
+        
+    failed-upgrade)
+        # Nothing to do on failed upgrade
+        exit 0
+        ;;
+        
+    *)
+        echo "prerm called with unknown argument '$1'" >&2
+        exit 1
+        ;;
+esac
+
+exit 0

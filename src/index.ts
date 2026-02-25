@@ -3,7 +3,7 @@ import { Hono } from 'hono';
 const app = new Hono();
 
 // GitHub raw URL से script fetch करें
-const SCRIPT_URL = 'https://raw.githubusercontent.com/sugan0927/easyinstall-worker./main/install.sh';
+const SCRIPT_URL = 'https://raw.githubusercontent.com/sugan0927/easyinstall-worker./main/easyinstall.sh';
 
 app.get('/script', async (c) => {
   try {

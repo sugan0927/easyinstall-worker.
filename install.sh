@@ -24,7 +24,7 @@ fi
 echo -e "${YELLOW}📦 Installing base EasyInstall...${NC}"
 
 # Fix: Use proper URL encoding for filename with parentheses
-curl -fsSL "https://raw.githubusercontent.com/sugan0927/easyinstall-worker./main/easyinstall%286%29.sh" -o /tmp/easyinstall.sh
+curl -fsSL "https://raw.githubusercontent.com/sugan0927/easyinstall-worker./main/easyinstall.sh" -o /tmp/easyinstall.sh
 
 # Alternative: If you rename the file, use this instead
 # curl -fsSL https://raw.githubusercontent.com/sugan0927/easyinstall-worker./main/easyinstall.sh -o /tmp/easyinstall.sh
